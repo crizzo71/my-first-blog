@@ -14,7 +14,7 @@ def getApiKey():
     elif 'OPENSHIFT_HOMEDIR' in os.environ: # this will be use onece we have openshift env.
         api_key = open(os.path.expanduser('~/app-root/repo/wsgi/xfr/metrics/.rally')).read().strip()
     else:
-        api_key = open(os.path.expanduser('~/djangogirls/.rally')).read().strip()
+        api_key = open(os.path.expanduser('~/djangogirls/gopd-webapp/blog/.rally')).read().strip()
 
     return api_key
 
@@ -37,6 +37,9 @@ def getStory(name):
         return Story.objects.get(rallyNumber=name)
     except Story.DoesNotExist:
         return None
+def formatRallyDate(date):
+    formattedDate= datetime.strptime(dat,' %Y-%m-%dT%H:%M:%S.%fZ').strftime('%d-%b-%Y')
+    return formattedDate
 
 def closeSession(session):
     session.endDate = timezone.now()
